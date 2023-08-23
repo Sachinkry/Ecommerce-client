@@ -1,9 +1,11 @@
 
-import React from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import { useRouter } from 'next/router';
+
 
 export default function ProductCard2() {
     const router = useRouter();
+    
 
     const handleCardClick = () => {
         console.log('Card clicked');
@@ -15,7 +17,7 @@ export default function ProductCard2() {
       console.log('Add to cart clicked');
     }
     return (
-        <div className=" min-w-[270px] w-[270px]  hover:shadow-md hover:shadow-neutral-700 hover:rounded-lg hover:cursor-pointer rouned-lg" onClick={() => handleCardClick()}>
+        <div  className=" min-w-[270px] w-[270px]  hover:shadow-md hover:shadow-neutral-700 hover:rounded-lg hover:cursor-pointer rouned-lg" onClick={() => handleCardClick()}>
             <div className="  bg-neutral-900 rounded-lg shadow ">
                 <div className="bg-neutral-200 rounded-t-lg">
                     <img className="rounded-t-lg w-full " src='https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cHJvZHVjdHxlbnwwfDB8MHx8fDA%3D&auto=format&fit=crop&w=400&q=60' />

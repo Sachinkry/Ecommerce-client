@@ -1,13 +1,14 @@
 // components/Cart.js
 import React, { useState } from 'react';
+import CartProductCard from './CartProductCard';
+import CartBilling from './CartBilling';
 
 const Cart = ({toggleCartVisibility}) => {
   
 
   return (
-    <div className={`fixed top-0 right-0 min-w-sm sm:w-[370px] w-full h-screen bg-neutral-900 px-4 md:px-6 py-6 overflow-y-auto transition-all ease-in-out duration-500`}>
-      <div className="w-full">
-        <div className="w-full flex flex-row justify-between lg:pr-4">
+    <div className={`border-l border-neutral-800 fixed top-0 right-0 min-w-sm sm:w-[350px] h-full w-full  bg-neutral-900 px-4 md:px-6 py-6 overflow-y-auto transition-all ease-in-out duration-500 `}>
+        <div className="w-full flex flex-row justify-between pr-1 ">
           <div className="text-2xl md:text-3xl">My Cart</div>
           <div
             className="hover:bg-neutral-800 cursor-pointer ring-1 ring-neutral-600 rounded-md p-2 bg-neutral-900"
@@ -22,7 +23,16 @@ const Cart = ({toggleCartVisibility}) => {
             </svg>
           </div>
         </div>
-      </div>
+        <div className='flex flex-col gap-40 justify-between overflow-hidden'>
+          <div className="flex flex-col gap-3 py-3  mt-3 flex-grow ">
+            <CartProductCard  />
+            <CartProductCard  />
+            <CartProductCard  />
+          </div>
+          <div className='flex '>
+            <CartBilling />
+          </div>
+        </div>
     </div>
   );
 };

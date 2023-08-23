@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import Header from './Header';
 import FooterPart from './FooterPart';
-import Cart from './Cart';
+import Cart from './cart/Cart';
 
 export default function Layout({ children }) {
   const [isCartVisible, setCartVisibility] = useState(false);

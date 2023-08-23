@@ -28,7 +28,7 @@ export default function Categories() {
 
 
     return (
-      <div ref={containerRef} className="w-full flex  gap-3 md:gap-4  overflow-x-auto overflow-y-hidden  scrollbar-thin scrollbar-thumb-neutral-800 scrollbar-track-gray-200 scrollbar-rounded-md pb-1 snap-x ">
+      <div ref={containerRef} className="w-full flex  gap-3 md:gap-4  overflow-x-auto overflow-y-hidden  scrollbar-thin scrollbar-thumb-neutral-800 scrollbar-track-gray-200 scrollbar-rounded-md pb-1 scroll-auto ">
         
         <Link href="/category/shoes">
           <div className="w-24 h-36 md:w-48 md:h-72 relative rounded-xl  shrink-0 ease-in duration-200 hover:cursor-pointer snap-center">

@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import SearchBar from './SearchBar';
 import { useEffect, useState } from 'react';
-import Cart from './Cart';
+import Cart from './cart/Cart';
 
 export default function Header({ isCartVisible, toggleCartVisibility}) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -122,7 +122,7 @@ export default function Header({ isCartVisible, toggleCartVisibility}) {
 
             </div>
 
-            {/* <span className="hidden lg:inline-block">Cart</span> */}
+          
             
           </span>
       </div>
