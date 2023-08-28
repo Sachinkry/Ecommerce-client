@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import Layout from '../../components/Layout';
 import RelatedProductCard from '../../components/product/RelatedProductCard';
-import ProductCard from '../../components/product/ProductCard';
+import ProductCard2 from '../../components/product/ProductCard2';
 import SortProducts from '@/components/product/SortProducts';
 import SortDropdown from '@/components/product/SortDropdown';
 import { useEffect, useState } from 'react';
@@ -39,7 +39,7 @@ export default function SearchPage() {
              <SortDropdown />
              <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:w-4/5'>
                 {products && products.map((product) => (
-                  <ProductCard key={product._id} product={product} />
+                  <ProductCard2 key={product._id} product={product} />
                 ))}
               </div>
               <SortProducts />

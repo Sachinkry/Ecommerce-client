@@ -1,10 +1,25 @@
 // components/Cart.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import CartProductCard from './CartProductCard';
 import CartBilling from './CartBilling';
+import { CartProvider } from './CartContext';
+import { useCart } from './CartContext';
 
 const Cart = ({toggleCartVisibility}) => {
-  
+  const { myCart } = useCart();
+  const [totalPrice, setTotalPrice] = useState(0);
+
+  const calculateTotalPrice = () => {
+    let totalPrice = 0;
+    myCart.forEach((prod) => {
+      totalPrice += prod.priceInCart;
+    });
+    setTotalPrice(totalPrice);
+  };
+
+  useEffect(() => {
+    calculateTotalPrice();
+  }, [myCart]);
 
   return (
     <div className={`border-l border-neutral-800 fixed top-0 right-0 min-w-sm sm:w-[350px] h-full w-full  bg-neutral-900 px-4 md:px-6 py-6 overflow-y-auto transition-all ease-in-out duration-500 `}>
@@ -23,14 +38,19 @@ const Cart = ({toggleCartVisibility}) => {
             </svg>
           </div>
         </div>
-        <div className='flex flex-col gap-40 justify-between overflow-hidden'>
+        <div className='flex flex-col  justify-between overflow-hidden min-h-[600px]'>
           <div className="flex flex-col gap-3 py-3  mt-3 flex-grow ">
-            <CartProductCard  />
-            <CartProductCard  />
-            <CartProductCard  />
+            {myCart && myCart.map((product) => 
+              {
+                return <CartProductCard 
+                 product={product} 
+                 calculateTotalPrice={calculateTotalPrice}
+                />
+              })
+            }
           </div>
           <div className='flex '>
-            <CartBilling />
+            <CartBilling totalPrice={totalPrice} />
           </div>
         </div>
     </div>

@@ -10,6 +10,7 @@ export default function Layout({ children }) {
   const [isCartVisible, setCartVisibility] = useState(false);
   const [isAccountVisible, setAccountVisibility] = useState(false);
   const [isToggleBarVisible, setToggleBarVisibility] = useState(false);
+  const [cartData, setCartData] = useState([]);
 
   const toggleCartVisibility = () => {
     setCartVisibility(!isCartVisible);
@@ -29,6 +30,8 @@ export default function Layout({ children }) {
     setAccountVisibility(false);
   };
 
+  
+
   return (
     <div className="px-4 sm:px-6 md:px-8 lg:px-10 xl:px-16">
       <Header 
@@ -41,7 +44,7 @@ export default function Layout({ children }) {
       <div className="w-full h-[0.1px] mb-8 bg-neutral-600"></div>
       {children}
       <FooterPart />
-      {isCartVisible && <Cart toggleCartVisibility={toggleCartVisibility} />}
+      {isCartVisible && <Cart toggleCartVisibility={toggleCartVisibility} cartData={cartData} />}
       {isAccountVisible && <AccountInfo  toggleAccountVisibility={toggleAccountVisibility} />}
       {isToggleBarVisible && 
           <ToggleBar 

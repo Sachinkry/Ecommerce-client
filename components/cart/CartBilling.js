@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 
-export default function CartBilling() {
+export default function CartBilling({totalPrice}) {
     const router = useRouter();
 
     const gotoCheckout = () => {
@@ -22,7 +22,7 @@ export default function CartBilling() {
             <div className="border-b border-neutral-700"></div>
             <div className="flex flex-row justify-between items-center px-1">
                 <div className="text-sm text-neutral-500">Total</div>
-                <div className="text-base text-neutral-300 uppercase">$300.00 usd</div>
+                <div className="text-base text-neutral-300 uppercase">${totalPrice} usd</div>
             </div>
             <div className="border-b border-neutral-700"></div>
             {/* checkout button */}
