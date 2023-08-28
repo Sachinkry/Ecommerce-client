@@ -4,36 +4,28 @@ import Image from "next/image";
 
 export default function ProductCard() {
     return (
-        <div className="w-48 h-72 flex-col justify-center items-center gap-3 inline-flex mb-6  ">
-          <div className="w-48 h-48 bg-neutral-900 rounded-tl-md rounded-tr-md flex-col justify-center items-center gap-2 flex hover:cursor-pointer">
-            <Image 
-              className="w-36 h-32" 
-              src="/ProductImg.png" 
-              width={144}
-              height={136}
-            />
+      <div key={product._id} className="flex-1 w-full max-w-[600px]  hover:shadow-md hover:shadow-neutral-700 hover:rounded-lg hover:cursor-pointer rouned-lg max-h-xs" onClick={() => handleCardClick(product._id)}>
+      <div className=" bg-neutral-900 rounded-lg shadow h-full">
+          <div className=" object-fill bg-neutral-200 rounded-t-lg">
+              <img className="rounded-t-lg w-full object-fill" src={product.imageUrl} />
           </div>
-          <div className="self-stretch h-24 flex-col justify-center items-start gap-1.5 flex">
-            <div className="self-stretch justify-start items-center gap-2 inline-flex">
-              <div className="text-neutral-200 text-opacity-80 text-lg font-medium">Mpow CH6</div>
-              <div className="grow shrink basis-0 h-3 justify-end items-center gap-2 flex">
-                <div className="text-neutral-200 text-xs font-normal">$ 199.00</div>
+          <div className="px-5 pb-5">
+              <div>
+                  <h4 className="text-2xl sm:text-xl  tracking-tight text-neutral-200 mt-2">{product.name}</h4>
+                  <h5 className="text-lg sm:text-md my-2 text-neutral-400 overflow-hidden overflow-ellipsis whitespace-nowrap max-h-[3em] line-clamp-2">{product.description}</h5>
               </div>
-            </div>
-            <div className="text-neutral-200 text-opacity-80 text-xs font-normal">Kids Headphones</div>
-            {/* rating */}
-            <StarRating />
-            <div className="self-stretch flex flex-row justify-between items-center gap-5 inline-flex">
-              <div className="  rounded-3xl ring-1 ring-rose-500 justify-center items-center gap-2 flex hover:ring-1 hover:ring-rose-500 hover:bg-rose-500 ">
-                <div className="px-2.5 py-1 text-rose-500 text-xs font-normal hover:text-white hover:cursor-pointer ">Add to Cart</div>
+              <div className="flex items-center justify-between">
+                  <span className="text-3xl sm:text-2xl font-bold text-neutral-200">${product.price}</span>
+                  <div className="flex items-center" onClick={(e) => handleAddToCart(e)}>
+                        <div className='hover:bg-neutral-900 cursor-pointer ring-1 ring-neutral-600 rounded-md p-2 bg-neutral-800 ' title="Add to Cart">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+                            </svg>
+                        </div>
+                  </div>
               </div>
-              {/* like button */}
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 hover:cursor-pointer text-rose-500">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-              </svg>
-
-            </div>
           </div>
-        </div>
+      </div>
+     </div> 
     )
 }
