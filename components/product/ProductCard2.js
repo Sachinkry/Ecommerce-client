@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import { useRouter } from 'next/router';
 import Loading from '../Loading';
-import { useCart } from '../cart/CartContext';
+import { useCart } from '../../contexts/CartContext';
 
 const ProductCard2= (product, isLoading) => {
     const { updateCart } = useCart();

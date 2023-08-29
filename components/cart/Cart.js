@@ -2,8 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import CartProductCard from './CartProductCard';
 import CartBilling from './CartBilling';
-import { CartProvider } from './CartContext';
-import { useCart } from './CartContext';
+import { useCart } from '../../contexts/CartContext';
 
 const Cart = ({toggleCartVisibility}) => {
   const { myCart } = useCart();

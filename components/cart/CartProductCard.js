@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useCart } from './CartContext';
+import { useCart } from '../../contexts/CartContext';
 
 export default function CartProductCard({product, calculateTotalPrice}) {
     // const productInfo = product.product;
@@ -89,7 +89,7 @@ export default function CartProductCard({product, calculateTotalPrice}) {
 
                 </div>
                 <div className="name gap-2 flex flex-col mt-1">
-                    <div className="text-sm w-40  sm:w-32 font-semibold text-neutral-200 ">{product.name || 'Product Name'}</div>
+                    <div className="text-sm w-40  sm:w-32 sm:font-semibold  text-neutral-200 ">{product.name || 'Product Name'}</div>
                     <div className="text-xs text-neutral-600">
                         <span className="text-xs">1.5 </span> /
                         <span className="text-xs"> B</span>
