@@ -26,8 +26,8 @@ const AccountInfo = ({toggleAccountVisibility}) => {
           <div className="flex flex-col gap-3 py-3  mt-3 flex-grow ">
             user info
           </div>
-          <div className='flex '>
-            edit button
+          <div className='flex underline text-rose-500 hover:cursor-pointer' onClick={() => window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"}>
+            ✌Click here
           </div>
         </div>
     </div>

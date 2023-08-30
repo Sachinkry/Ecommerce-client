@@ -4,10 +4,10 @@ export default function CartProductCard({ product }) {
 
     return (
         <div className="flex flex-col gap-3 ">
-            <div className="flex flex-row  justify-between w-full px-1 items-center">
+            <div className="flex flex-row  justify-between w-full px-1 pt-2 items-center">
                 <div className="flex items-center relative">
                     <img src={product.imageUrl} className="aspect-square w-12 ring-1 ring-neutral-600  rounded-md " />
-                    <div className="text-xs text-white px-1 absolute top-0 right-[-4px] bg-rose-600 rounded-xl hover:cursor-pointer"> {product.quantity}</div>
+                    <div className="text-xs text-white px-1 absolute top-[-6px] right-[-8px] bg-rose-600 rounded-xl hover:cursor-pointer"> {product.quantity}</div>
                 </div>
                 <div className="name gap-2 flex flex-col mt-1 w-2/4">
                     <div className="text-sm w-40  sm:w-32 font-semibold text-neutral-200 ">{product.name}</div>

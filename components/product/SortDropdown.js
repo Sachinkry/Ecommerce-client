@@ -5,9 +5,7 @@ export default function SortDropdown({ onChange }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const options = [
-    'Relevance',
-    'Trending',
-    'Latest arrivals',
+    
     'Price: Low to high',
     'Price: High to low',
   ];

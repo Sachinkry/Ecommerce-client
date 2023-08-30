@@ -68,8 +68,6 @@ const Categories = () => {
       getCategories();
     }, []);
 
-
-
     return (
       <div ref={containerRef} className="w-full flex  gap-3 md:gap-4  overflow-x-auto overflow-y-hidden  scrollbar-thin scrollbar-thumb-neutral-800 scrollbar-track-gray-200 scrollbar-rounded-md pb-1 scroll-auto ">
         {isLoading ? (

@@ -5,6 +5,7 @@ import FooterPart from './FooterPart';
 import Cart from './cart/Cart';
 import AccountInfo from './AccountInfo';
 import ToggleBar from './ToggleBar';
+import BuyMeCoffeeBtn from './BuyMeCoffeeBtn';
 
 export default function Layout({ children }) {
   const [isCartVisible, setCartVisibility] = useState(false);
@@ -33,7 +34,7 @@ export default function Layout({ children }) {
   
 
   return (
-    <div className="px-4 sm:px-6 md:px-8 lg:px-10 xl:px-16">
+    <div className="px-4 sm:px-6 md:px-8 lg:px-10 xl:px-16 overflow-hidden">
       <Header 
          isCartVisible={isCartVisible}  
          toggleAccountVisibility={toggleAccountVisibility}
@@ -52,6 +53,7 @@ export default function Layout({ children }) {
             toggleAccountVisibility={toggleAccountVisibility}
             toggleCartVisibility={toggleCartVisibility}
           />}
+      <BuyMeCoffeeBtn />
     </div>
   );
 }

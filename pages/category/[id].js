@@ -41,6 +41,9 @@ export default function SearchPage() {
                 {products && products.map((product) => (
                   <ProductCard2 key={product._id} product={product} />
                 ))}
+                {!products && (
+                  <div >No products Found!</div>
+                )}
               </div>
               <SortProducts />
         </div>
