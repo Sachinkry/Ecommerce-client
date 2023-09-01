@@ -53,7 +53,7 @@ export default function Layout({ children }) {
             toggleAccountVisibility={toggleAccountVisibility}
             toggleCartVisibility={toggleCartVisibility}
           />}
-      <BuyMeCoffeeBtn />
+      {/* <BuyMeCoffeeBtn /> */}
     </div>
   );
 }

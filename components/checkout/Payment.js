@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { useRouter } from 'next/router';
+import BuyMeCoffeeBtn from '../BuyMeCoffeeBtn';
 
 const stripePromise = loadStripe('STRIPE_CHECKOUT_KEY');
 
@@ -45,8 +46,9 @@ export default function Payment() {
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
               </svg>
               <span>Return to Home Page</span>
-            </div>
+          </div>
       </div>
+      <BuyMeCoffeeBtn />
     </div>
   );
 }

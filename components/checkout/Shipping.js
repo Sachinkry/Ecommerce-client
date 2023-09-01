@@ -21,7 +21,7 @@ export default function Shipping({ selectedMethod, setSelectedMethod, setTab}) {
             <div className="md:w-24 flex  text-neutral-400">Contact:</div>
             <div>{user.email}</div>
           </div>
-          <button className="underline text-rose-500 text-xs">Change</button>
+          {/* <button className="underline text-rose-500 text-xs">Change</button> */}
         </div>
         <div className="border-b border-neutral-700 my-4"></div>
         <div className="flex justify-between items-center">
@@ -29,7 +29,7 @@ export default function Shipping({ selectedMethod, setSelectedMethod, setTab}) {
             <div className="md:w-24 flex text-neutral-400">ShipAddr:</div>
             <div>{addressString}</div>
           </div>
-          <button className="underline text-rose-500 text-xs">Change</button>
+          {/* <button className="underline text-rose-500 text-xs">Change</button> */}
         </div>
       </div>
 
@@ -65,7 +65,7 @@ export default function Shipping({ selectedMethod, setSelectedMethod, setTab}) {
           </svg>
           <span>Return to Information</span>
         </div>
-        <button className="ring-1 ring-rose-600 px-5 p-4 bg-rose-900 rounded-lg text-neutral-300 hover:bg-neutral-900 hover:text-rose-600 text-xs" onClick={() => setTab('Payment')}>Continue to Payment</button>
+        <button className={`ring-1 ring-rose-600 px-5 p-4 bg-rose-900 rounded-lg text-neutral-300 hover:bg-neutral-900 hover:text-rose-600 text-xs ${selectedMethod ? '' : 'opacity-50 cursor-not-allowed'}`} onClick={() => setTab('Payment')} disabled={!selectedMethod}>Continue to Payment</button>
       </div>
     </div>
   );

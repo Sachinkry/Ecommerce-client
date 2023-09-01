@@ -1,5 +1,6 @@
-import Image from "next/image"
 import Link from "next/link"
+
+
 
 export default function FooterPart() {
     return (
@@ -8,23 +9,22 @@ export default function FooterPart() {
             <div className="w-full h-[0.1px]  bg-neutral-600"></div>
 
             <div className=" flex flex-col sm:flex-row h-fill">
-                {/* logo part */}
+                {/* logo + description */}
                 <div className=" md:w-1/4  flex flex-col justify-center items-start space-y-2 px-4   py-4">
                   <Link href="/" className='w-60 flex flex-row items-center space-x-2'>
                     <img
-                      src="/logo-noname.png" // Replace with your logo image path
+                      src="/logo-noname.png" 
                       alt="Logo"
                       className=" cursor-pointer h-8 md:h-12"
                     />
                     <img
-                      src="/logo-name.png" // Replace with your logo image path
+                      src="/logo-name.png" 
                       alt="LogoName"
                       className=" cursor-pointer w-20 h-4 md:w-40 md:h-8 md:block "
                     />
                   </Link>
                     <div className="w-60 text-neutral-300  text-xs hidden sm:block md:text-sm"> Deserunt consectetur officia labore do aliqua in aliquip magna eu ipsum ipsum laborum </div>
                     <div className="  flex-col justify-start items-start  inline-flex  sm:hidden">
-                      
                       <div className="flex-col justify-start items-start gap-1.5 flex">
                         <div className="text-neutral-300 hover:underline text-base font-normal">Home</div>
                         <div className="text-neutral-300 hover:underline text-base font-normal">About</div>
@@ -126,14 +126,20 @@ export default function FooterPart() {
               </div>
 
               {/* middle box */}
-              <div className=" justify-between flex flex-row items-center space-x-8 hidden sm:flex">
+              <div className=" justify-between flex flex-row items-center space-x-8 hidden lg::flex">
                 <div className=" text-neutral-300 text-xs font-normal text-center">Term Of Use</div>
                 <div className=" text-neutral-300 text-xs font-normal text-center">Privacy Policy</div>
               </div>
+              {/* Creator of this website */}
+              <div className="text-xs  font-normal justify-center  flex">
+                <div className="leading-3" >Made with &hearts; by <a className="underline text-rose-600" href="https://twitter.com/SachinKry">Sachin!</a></div>
+              </div>
 
               {/* last box */}
-              <div className="w-full sm:w-auto text-center text-neutral-300 text-base sm:text-xs font-normal sm:text-right ">All Rights Reserved by ShopiCart | 2023</div>
+              <div className="w-full sm:w-auto text-center text-neutral-300 text-base sm:text-xs font-normal sm:text-right hidden sm:flex">All Rights Reserved by ShopiCart | 2023</div>
             </div>
+
+            
 
         </div>
     )

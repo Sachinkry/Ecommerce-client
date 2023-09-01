@@ -1,10 +1,16 @@
 
 import React, {useState, useRef, useEffect} from 'react';
 import { useRouter } from 'next/router';
+import axios from 'axios';
+import getRandomProducts from '@/functions/getRandomProducts';
 
 const storeRelatedProductsLocal = (data) => {
     localStorage.setItem('relatedProducts', JSON.stringify(data));
   };
+
+const storeAllProductsLocal = (data) => {
+  localStorage.setItem('allProducts', JSON.stringify(data))
+}
 
 export default function RelateProducts() {
     const containerRef = useRef(null);
@@ -12,8 +18,6 @@ export default function RelateProducts() {
     const [isLoading, setIsLoading] = useState(true); // Set isLoading to true by default
     const [products, setProducts] = useState([]); // Set isLoading to true by default
     
-    
-
     const handleCardClick = (id) => {
         console.log('Card clicked');
         router.push(`/product/${id}`);
@@ -32,6 +36,7 @@ export default function RelateProducts() {
         } else {
           axios.get("/api/products").then((res) => {
           const products = res.data;
+          storeAllProductsLocal(products);
           const relatedProducts = getRandomProducts(products, 12);
           console.log('relatedProducts', relatedProducts);
           setProducts(relatedProducts);

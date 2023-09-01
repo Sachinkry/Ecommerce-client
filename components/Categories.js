@@ -1,46 +1,51 @@
-import Link from "next/link";
 import React, { useState, useEffect, useRef } from "react"
 import axios from "axios";
 import Loading from "./Loading";
 import { useRouter } from "next/router";
 
-const storeCategoriesLocal = (data) => {
-  localStorage.setItem("categories", JSON.stringify(data));
-}
+const handleRouteChange = (router, categoryId, categoryName) => {
+  if (categoryId && categoryName) {
+    const formattedName = categoryName.toLowerCase().replace(/ /g, '-'); 
+    router.push(`/category/${formattedName}-${categoryId}`);
+  } else {
+    console.error("Both categoryId and categoryName should be provided");
+  }
+};
 
+// Main compoenent "Categories"
 const Categories = () => {
   const [categories, setCategories] = useState([]);
-  const [isLoading, setIsLoading] = useState(true); // Set isLoading to true by default
+  const [loadingCategories, setLoadingCategories] = useState({});
+  const [error, setError] = useState(null);
   const containerRef = useRef(null);
+
   const router = useRouter();
+  const { query } = router;
+  let categoryName, categoryId;
+  if (query.category) {
+    [categoryName, categoryId] = query.category.split('-');
+  }
 
-  const getCategories = async () => {
-    const localCategories = localStorage.getItem("categories");
+  const fetchAndStoreCategories = async () => {
     try {
-      if (localCategories) {
-        setCategories(JSON.parse(localCategories));
-        return setIsLoading(false);
-      } else {
-        console.log("fetching categories");
-        setIsLoading(true);
-        const { data } = await axios.get("/api/categories");
-        // store this data local storage
-        storeCategoriesLocal(data);
-        setCategories(data);
-        console.log("data", data);
-      }
-    } catch (error) {
-      console.error('Error fetching categories:', error);
-    } finally {
-      setIsLoading(false);
-    }
-  }
+      const { data } = await axios.get("/api/categories");
+      const loadingState = {};
+      data.forEach((cat) => {
+        loadingState[cat._id] = false;
+      });
+      setLoadingCategories(loadingState)
+      setCategories(data);
 
-  const handleCategoryClick = (categoryId) => {
-    router.push(`/category/${categoryId}`);
-  }
+    } catch (err) {
+      setError('Error fetching categories')
+      console.error("Error fetching categories:", err);
+    } 
 
+  };
 
+  const handleCategoryClick = (categoryId, categoryName) => {
+    handleRouteChange(router, categoryId, categoryName);
+  };
 
   useEffect(() => {
       const container = containerRef.current;
@@ -65,24 +70,24 @@ const Categories = () => {
   },[] );
 
     useEffect(() => {
-      getCategories();
+      fetchAndStoreCategories();
     }, []);
 
     return (
-      <div ref={containerRef} className="w-full flex  gap-3 md:gap-4  overflow-x-auto overflow-y-hidden  scrollbar-thin scrollbar-thumb-neutral-800 scrollbar-track-gray-200 scrollbar-rounded-md pb-1 scroll-auto ">
-        {isLoading ? (
-          <Loading />
-        ): (
-          categories && categories.map((category) => (
-            <div onClick={() => handleCategoryClick(category._id)} key={category._id}>
-              <div className="w-24 h-36 md:w-48 md:h-72 relative rounded-xl  shrink-0 ease-in duration-200 hover:cursor-pointer snap-center">
-              <img src={category.imgUrl} className="w-24 h-36 md:w-48 md:h-72 left-0 top-0 absolute rounded-md " />
+      <div ref={containerRef} className="w-full flex gap-3 md:gap-4 overflow-x-auto overflow-y-hidden scrollbar-thin scrollbar-thumb-neutral-800 scrollbar-track-gray-200 scrollbar-rounded-md pb-1 scroll-auto">
+        {error && <div>{error}</div>}
+        {categories && categories.map((category) => (
+          <button onClick={() => handleCategoryClick(category._id, category.name)} key={category._id}>
+            <div className="w-24 h-36 md:w-48 md:h-72 relative rounded-xl shrink-0 ease-in duration-200 hover:cursor-pointer snap-center">
+              {loadingCategories[category._id] ? (
+                <Loading />
+              ) : (
+                <img src={category.imgUrl} alt="categoryImg" className="w-24 h-36 md:w-48 md:h-72 left-0 top-0 absolute rounded-md" />
+              )}
               <div className="w-full top-[10px] md:top-[24px] absolute text-center text-white md:text-2xl font-medium">{category.name}</div>
-              </div>
             </div>
-          ))
-        )}
-        
+          </button>
+        ))}
       </div>
     )
 }

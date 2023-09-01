@@ -1,7 +1,10 @@
 import { useRouter } from 'next/router'
+import { useCart } from '@/contexts/CartContext';
 
 export default function CartBilling({totalPrice}) {
+    const {myCart } = useCart();
     const router = useRouter();
+    console.log(myCart)
 
     const gotoCheckout = () => {
         router.push('/checkout/1')
@@ -26,9 +29,9 @@ export default function CartBilling({totalPrice}) {
             </div>
             <div className="border-b border-neutral-700"></div>
             {/* checkout button */}
-            <div className='py-2 text-center text-sm py-2 bg-rose-800 rounded-lg mx-1 mb-1 mt-4 text-neutral-300 hover:bg-neutral-900 hover:text-rose-600 hover:cursor-pointer ring-1  ring-rose-600' onClick={() => gotoCheckout()} >
+            <button className={`py-2 text-center text-sm py-2 bg-rose-800 rounded-lg mx-1 mb-1 mt-4 text-neutral-300 hover:bg-neutral-900 hover:text-rose-600  ring-1  ring-rose-600 ${myCart?.length > 0 ? 'cursor-pointer': 'opacity-50 cursor-not-allowed'}`} onClick={() => gotoCheckout()} disabled={!myCart.length} >
                 Proceed To Checkout
-            </div>
+            </button>
         </div>
     )
 }

@@ -13,11 +13,12 @@ export default function CheckoutPage() {
 
   return (
     <div className=" max-w-[1050px] mx-auto container  px-4 sm:px-6 md:px-8  text-white rounded-lg my-8 ">
-      <div className='my-4' onClick={() => router.push('/')}>
+      <div className='my-4' >
           <img
             src="/logo-noname.png" // Replace with your logo image path
             alt="Logo"
             className=" cursor-pointer h-10"
+            onClick={() => router.push('/')}
           />
       </div>
       <div className=" md:flex md:space-y-0 md:gap-0 space-y-10   justify-center ">
@@ -51,15 +52,15 @@ export default function CheckoutPage() {
         {/* horizonatl line */}
         <div className=' md:w-[480px] md:bg-neutral-900 md:p-4   text-white rounded-lg '>
           <nav className="text-xs flex space-x-4 items-center md:my-6 mb-6">
-            <div className={`${tab === 'Information' ? 'text-rose-600 text-sm' : 'text-neutral-300'} hover:cursor-pointer`} onClick={() => setTab('Information')}>Information</div>
+            <div className={`${tab === 'Information' ? 'text-rose-600 text-sm' : 'text-neutral-300'} `} >Information</div>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-3 h-3 text-neutral-600">
               <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
             </svg>
-            <div className={`hover:cursor-pointer ${tab === 'Shipping' ? 'text-rose-600 text-sm' : 'text-neutral-300'}`} onClick={() => setTab('Shipping')}>Shipping</div>
+            <div className={` ${tab === 'Shipping' ? 'text-rose-600 text-sm' : 'text-neutral-300'}`} >Shipping</div>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-3 h-3 text-neutral-600">
               <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
             </svg>
-            <div className={`hover:cursor-pointer ${tab === 'Payment' ? 'text-rose-600 text-sm' : 'text-neutral-300'}`} onClick={() => setTab('Payment')}>Payment</div>
+            <div className={` ${tab === 'Payment' ? 'text-rose-600 text-sm' : 'text-neutral-300'}`} >Payment</div>
           </nav>
 
           {tab === 'Information' && <CheckOutMain setTab={setTab} />}

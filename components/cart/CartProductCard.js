@@ -85,9 +85,8 @@ export default function CartProductCard({product, calculateTotalPrice}) {
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-3 h-3 absolute top-0 right-[-4px] bg-neutral-800 rounded-xl hover:cursor-pointer" onClick={() => removeProductFromCart()} >
                       <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
                     </svg>
-
-
                 </div>
+                
                 <div className="name gap-2 flex flex-col mt-1">
                     <div className="text-sm w-40  sm:w-32 sm:font-semibold  text-neutral-200 ">{product.name || 'Product Name'}</div>
                     <div className="text-xs text-neutral-600">
