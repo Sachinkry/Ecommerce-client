@@ -3,50 +3,35 @@ import React, {useState, useRef, useEffect} from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
 import getRandomProducts from '@/functions/getRandomProducts';
+import { useCart } from '@/contexts/CartContext';
 
-const storeRelatedProductsLocal = (data) => {
-    localStorage.setItem('relatedProducts', JSON.stringify(data));
-  };
-
-const storeAllProductsLocal = (data) => {
-  localStorage.setItem('allProducts', JSON.stringify(data))
-}
 
 export default function RelateProducts() {
     const containerRef = useRef(null);
     const router = useRouter();
-    const [isLoading, setIsLoading] = useState(true); // Set isLoading to true by default
-    const [products, setProducts] = useState([]); // Set isLoading to true by default
+    const [isLoading, setIsLoading] = useState(true); 
+    const [products, setProducts] = useState([]); 
+    const { addToCart } = useCart();
     
     const handleCardClick = (id) => {
         console.log('Card clicked');
         router.push(`/product/${id}`);
     }
 
-    const handleAddToCart = (e) => {
-      e.stopPropagation();
-      console.log('Add to cart clicked');
-    }
+    const fetchProducts = async () => {
+      try {
+        setIsLoading(true);
+        const { data } = await axios.get("/api/products");
+        const relatedProducts = getRandomProducts(data, 10);
+        setProducts(relatedProducts);
+        setIsLoading(false);
+      } catch (error) {
+        console.error('Error fetching related products:', error);
+      }
+    };
 
     useEffect(() => {
-        const relatedProducts = localStorage.getItem('relatedProducts');
-        if (relatedProducts) {
-          setProducts(JSON.parse(relatedProducts));
-          return setIsLoading(false);
-        } else {
-          axios.get("/api/products").then((res) => {
-          const products = res.data;
-          storeAllProductsLocal(products);
-          const relatedProducts = getRandomProducts(products, 12);
-          console.log('relatedProducts', relatedProducts);
-          setProducts(relatedProducts);
-          storeRelatedProductsLocal(relatedProducts);
-          setIsLoading(false);
-  
-        }).catch((error) => {
-          console.log('Error fetching related products:', error);
-        }) 
-        }
+        fetchProducts();
       }, []);
 
     useEffect(() => {
@@ -86,7 +71,7 @@ export default function RelateProducts() {
                         </div>
                         <div className="flex items-center justify-between">
                             <span className="text-3xl sm:text-2xl font-bold text-neutral-200">${product.price}</span>
-                            <div className="flex items-center" onClick={(e) => handleAddToCart(e)}>
+                            <div className="flex items-center" onClick={(e) => {e.stopPropagation(); addToCart(product)}}>
                                   <div className='hover:bg-neutral-900 cursor-pointer ring-1 ring-neutral-600 rounded-md p-2 bg-neutral-800 ' title="Add to Cart">
                                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
                                           <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />

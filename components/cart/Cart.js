@@ -11,7 +11,7 @@ const Cart = ({toggleCartVisibility}) => {
   const calculateTotalPrice = () => {
     let totalPrice = 0;
     myCart.forEach((prod) => {
-      totalPrice += prod.priceInCart;
+      totalPrice += prod.price * prod.quantity;
     });
     setTotalPrice(totalPrice);
   };

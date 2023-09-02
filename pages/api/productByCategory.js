@@ -6,6 +6,11 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
+  // Set cache headers for GET method
+  if (req.method === 'GET') {
+    res.setHeader('Cache-Control', 'public, max-age=3600'); // Cache for 1 hour
+  }
+
   try {
     const db = await connectDB();
     const productsCollection = db.collection('products');
@@ -15,7 +20,7 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Missing category ID' });
     }
 
-    const query = { 'category': new ObjectId(categoryId) };
+    const query = { 'category': new ObjectId(categoryId.toString()) };
     const products = await productsCollection.find(query).toArray();
 
     if (!products.length) {

@@ -1,49 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Loading from '../Loading';
+import { useCart } from '@/contexts/CartContext';
 
-export default function ProductPageCard({ id }) {
-    const [isLoading, setIsLoading] = useState(true); // Set isLoading to true by default
+
+export default function ProductInfoCard({ id }) {
+    const [isLoading, setIsLoading] = useState(true); 
     const [product, setProduct] = useState(null);
-    console.log('iddddd', id)
+    const { addToCart } = useCart();
 
     const getMainProduct = async () => {
-        const localProducts = localStorage.getItem('products');
-        // search localProducts for id
-        try {
-          if (localProducts) {
-            const products = JSON.parse(localProducts);
-            const mainProduct = products.filter((product) => product._id === id);
-            if (mainProduct.length > 0) {
-              setProduct(mainProduct[0]);
-              return setIsLoading(false);
-            }
-          }
-      
-          const res = await axios.get("/api/products");
-          const products = res.data;
-          const mainProduct = products.filter((product) => product._id === id);
-          if (mainProduct.length > 0) {
-            setProduct(mainProduct[0]);
-          } else {
-            console.log("Product not found in local storage or database");
-          }
-        } catch (error) {
-          console.error("Error fetching main product", error);
-        } finally {
-          setIsLoading(false);
-        }
-      };
-  
+      try {
+          const res = await axios.get(`/api/products/${id}`);
+          console.log("idinProductInfoCard", id);
+          setProduct(res.data);
+      } catch (error) {
+          console.error("Fetching product failed:", error);
+      }
+      setIsLoading(false);
+    };
   
       useEffect(() => {
-        // get product info from local storage
-        console.log('id', id)
         getMainProduct();
-        console.log('product', product)
       }, [id]);
 
-    
+    if (isLoading) return <Loading />
 
     return (
         <div>
@@ -91,13 +72,13 @@ export default function ProductPageCard({ id }) {
                         <div className="flex flex-col gap-1">
                             <div className='text-neutral-200 uppercase text-sm'>more info</div>
                             <ul className='text-xs flex flex-col gap-1'>
-                                <li className='text-xs'><span className='font-bold px-2'>•</span> Strong 210D ripstop nylon drawstring bag</li>
+                                <li className='text-xs'><span className='font-bold px-2'>•</span> Made from durable materials</li>
                                 <li className='text-xs'><span className='font-bold px-2'>•</span> Available in multiple sizes</li>
                                 <li className='text-xs'><span className='font-bold px-2'>•</span> Easy-to-close durable drawstring</li>
                                 <li className='text-xs'><span className='font-bold px-2'>•</span> Sturdy, reusable, and resilient</li>
                             </ul>
                         </div>
-                        <div className='flex flex-row gap-2 justify-center hover:bg-neutral-900 cursor-pointer ring-1 ring-neutral-600 rounded-md p-2 bg-neutral-800 mt-4' >
+                        <div onClick={() => addToCart(product)} className='flex flex-row gap-2 justify-center hover:bg-neutral-900 cursor-pointer ring-1 ring-neutral-600 rounded-md p-2 bg-neutral-800 mt-4' >
                             <span className='text-sm text-neutral-300'>Add to Cart</span>
                             <div className='flex items-center'>
                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-4 h-4">

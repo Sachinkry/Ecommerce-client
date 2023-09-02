@@ -1,6 +1,6 @@
 import Layout from '@/components/Layout'
 import Categories from '@/components/Categories'
-import ProductCard2 from '@/components/product/ProductCard2'
+import ProductCard from '@/components/product/ProductCard'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import getRandomProducts from '../functions/getRandomProducts'
@@ -43,15 +43,18 @@ export default function Home() {
 
   return (
     <Layout>
-      <div className='space-y-10'>
+      <div className='space-y-6'>
         {/* <Banner /> */}
 
         <Categories  />
-
-        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
-          {products && products.map((product) => (
-            <ProductCard2 key={product._id} product={product} isLoading={isLoading} />
-          ))}
+        
+        <div>
+            <div className='text-2xl font-semibold text-neutral-300 mb-2'>Products For You</div>
+            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
+              {products && products.map((product) => (
+                <ProductCard key={product._id} product={product} isLoading={isLoading} />
+                ))}
+            </div>
         </div>
              
         

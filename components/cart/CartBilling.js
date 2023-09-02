@@ -4,7 +4,6 @@ import { useCart } from '@/contexts/CartContext';
 export default function CartBilling({totalPrice}) {
     const {myCart } = useCart();
     const router = useRouter();
-    console.log(myCart)
 
     const gotoCheckout = () => {
         router.push('/checkout/1')

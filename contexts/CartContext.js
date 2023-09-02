@@ -13,13 +13,33 @@ export const CartProvider = ({ children }) => {
     setMyCart(initialCart);
   }, []);
 
-  const updateCart = (newCart) => {
-    setMyCart(newCart);
-    localStorage.setItem('myCart', JSON.stringify(newCart));
+  const addToCart = (product, quantityChange = 1) => {
+    let updatedCart = [...myCart];
+    const existingProductIndex = updatedCart.findIndex((p) => p._id === product._id);
+  
+    if (existingProductIndex >= 0) {
+      updatedCart[existingProductIndex].quantity += quantityChange;
+      if (updatedCart[existingProductIndex].quantity <= 0) {
+        updatedCart.splice(existingProductIndex, 1);
+      }
+    } else if (quantityChange > 0) {
+      updatedCart.push({ ...product, quantity: 1 });
+    }
+  
+    setMyCart(updatedCart);
+    localStorage.setItem('myCart', JSON.stringify(updatedCart));
+  };
+  
+
+  const removeFromCart = (productId, callback) => {
+    const newCartArray = myCart.filter((prod) => prod._id !== productId);
+    setMyCart(newCartArray);
+    localStorage.setItem('myCart', JSON.stringify(newCartArray));
+    if (callback) callback();
   };
 
   return (
-    <CartContext.Provider value={{ myCart, updateCart }}>
+    <CartContext.Provider value={{ myCart, addToCart, removeFromCart }}>
       {children}
     </CartContext.Provider>
   );
