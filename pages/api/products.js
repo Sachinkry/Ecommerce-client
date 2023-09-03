@@ -10,17 +10,19 @@ export default async function handle(req, res) {
     res.setHeader('Cache-Control', 'public, max-age=3600');
 
     try {
-      const productsCollection = db.collection(PRODUCTS_COLLECTION);
+      const productsCollection = db.collection('products');
       const { id } = req.query;
-      console.log(id)
+      console.log(id, "no way")
+      console.log(db)
+
       
       if (id) {
         // Validate id before using it (assumes you have a validateId function)
         if (!validateId(id)) {
           return res.status(StatusCodes.BAD_REQUEST).json({ error: 'Invalid ID' });
         }
-        
-        const product = await productsCollection.findOne({ _id: id });
+        const ObjectID = require('mongodb').ObjectId;
+        const product = await productsCollection.findOne({ _id: new ObjectID(id.trim()) });
 
         if (product) {
           return res.json(product);

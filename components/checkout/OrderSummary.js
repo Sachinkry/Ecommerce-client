@@ -9,23 +9,16 @@ const OrderSummary = ({selectedMethod}) => {
   const [shippingPrice, setShippingPrice] = useState('');
 
   const calculateTotalPrice = () => {
-        let totalPrice = 0;
-        myCart.forEach((prod) => {
-            totalPrice += prod.priceInCart;
-            
-          });
-        if (selectedMethod === 'Economy') {
-            totalPrice += 4.90;
-        } else if (selectedMethod === 'Standard') {
-            totalPrice += 7.70;
-        }
-        setTotalPrice(totalPrice);
-        return totalPrice;
-    };
+    let totalPrice = 0;
+    myCart.forEach((prod) => {
+      totalPrice += prod.price * prod.quantity;
+    });
+    setTotalPrice(totalPrice);
+  };
 
-    useEffect(() => {
-        calculateTotalPrice();
-    }, []);
+  useEffect(() => {
+    calculateTotalPrice();
+  }, [myCart]);
 
     useEffect(() => {
         if (selectedMethod === 'Economy') {

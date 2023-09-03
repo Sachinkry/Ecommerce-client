@@ -6,6 +6,7 @@ import BuyMeCoffeeBtn from '../BuyMeCoffeeBtn';
 
 const stripePromise = loadStripe('STRIPE_CHECKOUT_KEY');
 
+// stripe checkout: currently unused and not completely done
 const CheckoutForm = ({ setTab }) => {
   const stripe = useStripe();
   const elements = useElements();

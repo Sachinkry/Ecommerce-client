@@ -4,35 +4,39 @@ import { useRouter } from 'next/router';
 import axios from 'axios';
 import getRandomProducts from '@/functions/getRandomProducts';
 import { useCart } from '@/contexts/CartContext';
+import { useProducts } from '@/contexts/ProductsContext';
 
 
 export default function RelateProducts() {
     const containerRef = useRef(null);
     const router = useRouter();
     const [isLoading, setIsLoading] = useState(true); 
-    const [products, setProducts] = useState([]); 
+    const [relatedProducts, setRelatedProducts] = useState([]); 
     const { addToCart } = useCart();
+    const { products, getRandomProducts } = useProducts(); 
     
     const handleCardClick = (id) => {
         console.log('Card clicked');
         router.push(`/product/${id}`);
     }
 
-    const fetchProducts = async () => {
-      try {
-        setIsLoading(true);
-        const { data } = await axios.get("/api/products");
-        const relatedProducts = getRandomProducts(data, 10);
-        setProducts(relatedProducts);
-        setIsLoading(false);
-      } catch (error) {
-        console.error('Error fetching related products:', error);
-      }
-    };
+    // const fetchProducts = async () => {
+    //   try {
+    //     setIsLoading(true);
+    //     const { data } = await axios.get("/api/products");
+    //     const relatedProducts = getRandomProducts(data, 10);
+    //     // setProducts(relatedProducts);
+    //     setIsLoading(false);
+    //   } catch (error) {
+    //     console.error('Error fetching related products:', error);
+    //   }
+    // };
 
     useEffect(() => {
-        fetchProducts();
-      }, []);
+        const relatedProducts = getRandomProducts(9);
+        setRelatedProducts(relatedProducts)
+
+      }, [products]);
 
     useEffect(() => {
         const container = containerRef.current;
@@ -58,7 +62,7 @@ export default function RelateProducts() {
 
     return (
         <div ref={containerRef} className='w-full flex  gap-3 md:gap-4  overflow-x-auto overflow-y-hidden  scrollbar-thin scrollbar-thumb-neutral-800 scrollbar-track-gray-200 scrollbar-rounded-md pb-1 scroll-auto '>
-            {products.length > 0 && products.map((product) => (
+            {relatedProducts.length > 0 && relatedProducts.map((product) => (
                 <div key={product._id}  className=" min-w-[270px] w-[270px]  hover:shadow-md hover:shadow-neutral-700 hover:rounded-lg hover:cursor-pointer rouned-lg" onClick={() => handleCardClick(product._id)}>
                 <div className="  bg-neutral-900 rounded-lg shadow h-full ">
                     <div className="bg-neutral-200 rounded-t-lg">

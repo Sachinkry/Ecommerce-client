@@ -12,12 +12,13 @@ const handleRouteChange = (router, categoryId, categoryName) => {
   }
 };
 
-// Main compoenent "Categories"
+// Main component "Categories"
 const Categories = () => {
   const [categories, setCategories] = useState([]);
   const [loadingCategories, setLoadingCategories] = useState({});
   const [error, setError] = useState(null);
   const containerRef = useRef(null);
+  const [isLoading, setIsLoading] = useState(false)
 
   const router = useRouter();
   const { query } = router;
@@ -27,6 +28,7 @@ const Categories = () => {
   }
 
   const fetchAndStoreCategories = async () => {
+    setIsLoading(true)
     try {
       const { data } = await axios.get("/api/categories");
       const loadingState = {};
@@ -35,6 +37,7 @@ const Categories = () => {
       });
       setLoadingCategories(loadingState)
       setCategories(data);
+      setIsLoading(false)
 
     } catch (err) {
       setError('Error fetching categories')
@@ -73,13 +76,15 @@ const Categories = () => {
       fetchAndStoreCategories();
     }, []);
 
+    if(isLoading) <Loading />;
+
     return (
       <div ref={containerRef} className="w-full flex gap-3 md:gap-4 overflow-x-auto overflow-y-hidden scrollbar-thin scrollbar-thumb-neutral-800 scrollbar-track-gray-200 scrollbar-rounded-md pb-1 scroll-auto">
         {error && <div>{error}</div>}
         {categories && categories.map((category) => (
           <button onClick={() => handleCategoryClick(category._id, category.name)} key={category._id}>
             <div className="w-24 h-36 md:w-48 md:h-72 relative rounded-xl shrink-0 ease-in duration-200 hover:cursor-pointer snap-center">
-              {loadingCategories[category._id] ? (
+              {isLoading ? (
                 <Loading />
               ) : (
                 <img src={category.imgUrl} alt="categoryImg" className="w-24 h-36 md:w-48 md:h-72 left-0 top-0 absolute rounded-md" />

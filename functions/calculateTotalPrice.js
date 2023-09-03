@@ -1,15 +1,13 @@
+// import { useCart } from "@/contexts/CartContext";
 
-const calculateTotalPrice = () => {
-    const myCart = localStorage.getItem('myCart');
-    let myCartArray = JSON.parse(myCart);
-    if (!myCartArray) {
-        myCartArray = [];
-    }
-    let totalPrice = 0;
-    myCartArray.forEach((product) => {
-        totalPrice += product.price;
-    })
-    localStorage.setItem('totalPrice', JSON.stringify(totalPrice));
-}
+// const { myCart } = useCart();
 
-export default calculateTotalPrice
+// const calculateTotalPrice = () => {
+//   let totalPrice = 0;
+//   myCart.forEach((prod) => {
+//     totalPrice += prod.price * prod.quantity;
+//   });
+//   return totalPrice;
+// };
+
+// export default calculateTotalPrice;

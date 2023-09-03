@@ -4,27 +4,12 @@ import Loading from '../Loading';
 import { useCart } from '@/contexts/CartContext';
 
 
-export default function ProductInfoCard({ id }) {
+export default function ProductInfoCard({ product }) {
     const [isLoading, setIsLoading] = useState(true); 
-    const [product, setProduct] = useState(null);
+    // const [product, setProduct] = useState(null);
     const { addToCart } = useCart();
 
-    const getMainProduct = async () => {
-      try {
-          const res = await axios.get(`/api/products/${id}`);
-          console.log("idinProductInfoCard", id);
-          setProduct(res.data);
-      } catch (error) {
-          console.error("Fetching product failed:", error);
-      }
-      setIsLoading(false);
-    };
-  
-      useEffect(() => {
-        getMainProduct();
-      }, [id]);
-
-    if (isLoading) return <Loading />
+    
 
     return (
         <div>
@@ -78,8 +63,8 @@ export default function ProductInfoCard({ id }) {
                                 <li className='text-xs'><span className='font-bold px-2'>•</span> Sturdy, reusable, and resilient</li>
                             </ul>
                         </div>
-                        <div onClick={() => addToCart(product)} className='flex flex-row gap-2 justify-center hover:bg-neutral-900 cursor-pointer ring-1 ring-neutral-600 rounded-md p-2 bg-neutral-800 mt-4' >
-                            <span className='text-sm text-neutral-300'>Add to Cart</span>
+                        <div onClick={() => addToCart(product)} className='flex flex-row gap-2 justify-center hover:bg-neutral-900 cursor-pointer ring-1 ring-rose-600 rounded-md p-2 bg-rose-800 mt-4' >
+                            <span className='text-sm text-neutral-300 hover:text-rose-800'>Add to Cart</span>
                             <div className='flex items-center'>
                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-4 h-4">
                                           <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />

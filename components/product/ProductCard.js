@@ -1,9 +1,8 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import Loading from '../Loading';
-import { useCart } from '../../contexts/CartContext';
+import { useCart } from '@/contexts/CartContext';
 
-const ProductCard= ({product, isLoading}) => {
+const ProductCard= ({product}) => {
     const { addToCart } = useCart();
     const router = useRouter();
 
@@ -20,8 +19,6 @@ const ProductCard= ({product, isLoading}) => {
       }
     }
 
-    if(isLoading) return <Loading />;
-     
     return (
         <div key={product._id} className="flex-1 w-full max-w-[600px]  hover:shadow-md hover:shadow-neutral-700 hover:rounded-lg hover:cursor-pointer rouned-lg max-h-xs" onClick={() => handleCardClick(product._id)}>
             <div className=" bg-neutral-900 rounded-lg shadow h-full">
