@@ -44,6 +44,7 @@ const Cart = ({toggleCartVisibility}) => {
                 return <CartProductCard 
                  product={product} 
                  calculateTotalPrice={calculateTotalPrice}
+                 key={product._id}
                 />
               })
             }
