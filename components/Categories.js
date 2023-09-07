@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react"
 import axios from "axios";
 import Loading from "./Loading";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 const handleRouteChange = (router, categoryId, categoryName) => {
   if (categoryId && categoryName) {
@@ -87,7 +88,16 @@ const Categories = () => {
               {isLoading ? (
                 <Loading />
               ) : (
-                <img src={category.imgUrl} alt="categoryImg" className="w-24 h-36 md:w-48 md:h-72 left-0 top-0 absolute rounded-md" />
+                <div className="w-24 h-36 md:w-48 md:h-72 relative overflow-hidden rounded-md">
+                  <Image 
+                    src={category.imgUrl} 
+                    alt="categoryImg" 
+                    layout="fill" 
+                    objectFit="cover"
+                    objectPosition="center"
+                    className="rounded-md" 
+                  />
+                </div>
               )}
               <div className="w-full top-[10px] md:top-[24px] absolute text-center text-white md:text-2xl font-medium">{category.name}</div>
             </div>

@@ -40,8 +40,8 @@ const CheckoutForm = ({ setTab }) => {
 export default function Payment() {
   return (
     <div className="space-y-8 ">
-      <div className='text-sm bg-neutral-900 p-4 rounded-lg ring-1 ring-neutral-600 text-neutral-300 h-[200px]  '>No Payments are accepted as of now.</div>
-      <div className='flex justify-start'>
+      <div className="text-sm bg-neutral-900 p-4 rounded-lg ring-1 ring-neutral-600 text-neutral-300 h-[200px]  ">No Payments are accepted as of now.</div>
+      <div className="flex justify-start">
           <div className=" text-xs text-rose-600 hover:text-rose-600/80 flex flex-row items-center gap-1 hover:cursor-pointer" onClick={() => router.push('/')}>
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-3 h-3 ">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />

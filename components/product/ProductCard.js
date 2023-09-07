@@ -1,6 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import { useCart } from '@/contexts/CartContext';
+import Image from 'next/image';
 
 const ProductCard= ({product}) => {
     const { addToCart } = useCart();
@@ -22,8 +23,15 @@ const ProductCard= ({product}) => {
     return (
         <div key={product._id} className="flex-1 w-full max-w-[600px]  hover:shadow-md hover:shadow-neutral-700 hover:rounded-lg hover:cursor-pointer rouned-lg max-h-xs" onClick={() => handleCardClick(product._id)}>
             <div className=" bg-neutral-900 rounded-lg shadow h-full">
-                <div className=" object-fill bg-neutral-200 rounded-t-lg">
-                        <img className="rounded-t-lg w-full object-fill" src={product.imageUrl || 'https://via.placeholder.com/'} />
+                <div className=" object-fill bg-neutral-200 rounded-t-lg relative h-[200px] w-full">
+                <Image 
+                  className="rounded-t-lg object-cover" 
+                  layout="fill"
+                  objectFit="cover"
+                  src={product.imageUrl || 'https://via.placeholder.com/'} 
+                  alt={`${product.name || 'Product Name'} Image`} 
+                />
+                    
                 </div>
                 <div className="px-5 pb-5">
                     <div>

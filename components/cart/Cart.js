@@ -37,7 +37,7 @@ const Cart = ({toggleCartVisibility}) => {
             </svg>
           </div>
         </div>
-        <div className='flex flex-col  justify-between overflow-hidden min-h-[600px]'>
+        <div className="flex flex-col  justify-between overflow-hidden min-h-[600px]">
           <div className="flex flex-col gap-3 py-3  mt-3 flex-grow ">
             {myCart && myCart.map((product) => 
               {

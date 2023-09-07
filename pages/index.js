@@ -17,14 +17,13 @@ export default function Home() {
 
   return (
     <Layout>
-      <div className='space-y-6'>
-        {/* <Banner /> */}
+      <div className="space-y-6">
 
         <Categories  />
         
         <div>
-            <div className='text-2xl font-semibold text-neutral-300 mb-2'>Products For You</div>
-            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
+            <div className="text-2xl font-semibold text-neutral-300 mb-2">Products For You</div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {randProducts && randProducts.map((product) => (
                 <ProductCard key={product._id} product={product} isLoading={isLoading} />
                 ))}

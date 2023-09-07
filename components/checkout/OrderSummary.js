@@ -36,7 +36,7 @@ const OrderSummary = ({selectedMethod}) => {
   return (
     <div className={` w-full  transition-all ease-in-out duration-500 `}>
         
-        <div className='w-full flex flex-col gap-6 justify-between overflow-hidden'>
+        <div className="w-full flex flex-col gap-6 justify-between overflow-hidden">
           <div className="flex flex-col gap-1 py-3  mt-3 flex-grow ">
             {myCart && myCart.map((product) =>
               {
@@ -46,7 +46,7 @@ const OrderSummary = ({selectedMethod}) => {
               })
               }
           </div>
-          <div className='flex '>
+          <div className="flex ">
             <div className="flex flex-col gap-2 w-full ">
                 <div className="flex flex-row justify-between items-center px-1">
                     <div className="text-sm text-neutral-500">Taxes</div>

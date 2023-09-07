@@ -22,11 +22,11 @@ const AccountInfo = ({toggleAccountVisibility}) => {
             </svg>
           </div>
         </div>
-        <div className='flex flex-col gap-40 justify-between overflow-hidden'>
+        <div className="flex flex-col gap-40 justify-between overflow-hidden">
           <div className="flex flex-col gap-3 py-3  mt-3 flex-grow ">
             user info
           </div>
-          <div className='flex underline text-rose-500 hover:cursor-pointer' onClick={() => window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"}>
+          <div className="flex underline text-rose-500 hover:cursor-pointer" onClick={() => window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"}>
             ✌Click here
           </div>
         </div>

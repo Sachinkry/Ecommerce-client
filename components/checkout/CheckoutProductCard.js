@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Image from 'next/image'
 
 export default function CartProductCard({ product }) {
 
@@ -6,7 +7,7 @@ export default function CartProductCard({ product }) {
         <div className="flex flex-col gap-3 ">
             <div className="flex flex-row  justify-between w-full px-1 pt-2 items-center">
                 <div className="flex items-center relative">
-                    <img src={product.imageUrl} className="aspect-square w-12 ring-1 ring-neutral-600  rounded-md " />
+                    <Image width={16} height={12}  src={product.imageUrl} className="aspect-square w-12 ring-1 ring-neutral-600  rounded-md " />
                     <div className="text-xs text-white px-1 absolute top-[-6px] right-[-8px] bg-rose-600 rounded-xl hover:cursor-pointer"> {product.quantity>1 ? product.quantity : ''}</div>
                 </div>
                 <div className="name gap-2 flex flex-col mt-1 w-2/4">
