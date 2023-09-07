@@ -1,5 +1,5 @@
 // components/Cart.js
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import CartProductCard from './CartProductCard';
 import CartBilling from './CartBilling';
 import { useCart } from '../../contexts/CartContext';
@@ -8,17 +8,17 @@ const Cart = ({toggleCartVisibility}) => {
   const { myCart } = useCart();
   const [totalPrice, setTotalPrice] = useState(0);
 
-  const calculateTotalPrice = () => {
+  const calculateTotalPrice = useCallback(() => {
     let totalPrice = 0;
     myCart.forEach((prod) => {
       totalPrice += prod.price * prod.quantity;
     });
     setTotalPrice(totalPrice);
-  };
+  }, [myCart] );
 
   useEffect(() => {
     calculateTotalPrice();
-  }, [myCart]);
+  }, [myCart, calculateTotalPrice]);
 
   return (
     <div className={`border-l border-neutral-800 fixed top-0 right-0 min-w-sm sm:w-[350px] h-full w-full  bg-neutral-900 px-4 md:px-6 py-6 overflow-y-auto transition-all ease-in-out duration-500 `}>

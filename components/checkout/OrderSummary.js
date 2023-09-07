@@ -1,5 +1,5 @@
 // components/Cart.js
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import CartProductCard from './CheckoutProductCard'
 import { useCart } from '../../contexts/CartContext';
 
@@ -8,17 +8,17 @@ const OrderSummary = ({selectedMethod}) => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [shippingPrice, setShippingPrice] = useState('');
 
-  const calculateTotalPrice = () => {
+  const calculateTotalPrice = useCallback(() => {
     let totalPrice = 0;
     myCart.forEach((prod) => {
       totalPrice += prod.price * prod.quantity;
     });
     setTotalPrice(totalPrice);
-  };
+  }, [myCart]);
 
   useEffect(() => {
     calculateTotalPrice();
-  }, [myCart]);
+  }, [myCart, calculateTotalPrice]);
 
     useEffect(() => {
         if (selectedMethod === 'Economy') {
@@ -30,7 +30,7 @@ const OrderSummary = ({selectedMethod}) => {
         } else {
             setShippingPrice('Calculated at next step');
         }
-    }, [selectedMethod]);
+    }, [selectedMethod, calculateTotalPrice]);
 
 
   return (
@@ -42,6 +42,7 @@ const OrderSummary = ({selectedMethod}) => {
               {
                 return <CartProductCard 
                  product={product} 
+                 key={product._id}
                 />
               })
               }

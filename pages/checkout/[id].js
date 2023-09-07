@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Shipping from '@/components/checkout/Shipping';
 import Payment from '@/components/checkout/Payment';
 import {useRouter} from 'next/router';
+import Image from 'next/image';
 
 export default function CheckoutPage() {
   const router = useRouter();
@@ -14,9 +15,11 @@ export default function CheckoutPage() {
   return (
     <div className=" max-w-[1050px] mx-auto container  px-4 sm:px-6 md:px-8  text-white rounded-lg my-8 ">
       <div className='my-4' >
-          <img
+          <Image
             src="/logo-noname.png" // Replace with your logo image path
             alt="Logo"
+            width={40}
+            height={16}
             className=" cursor-pointer h-10"
             onClick={() => router.push('/')}
           />

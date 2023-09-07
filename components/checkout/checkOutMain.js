@@ -24,7 +24,7 @@ export default function CheckOutMain({ setTab }) {
     if (isDataStored) {
       setTab('Shipping');
     }
-  }, [isDataStored]);
+  }, [isDataStored, setTab]);
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();

@@ -1,8 +1,6 @@
 
 import React, {useState, useRef, useEffect} from 'react';
 import { useRouter } from 'next/router';
-import axios from 'axios';
-import getRandomProducts from '@/functions/getRandomProducts';
 import { useCart } from '@/contexts/CartContext';
 import { useProducts } from '@/contexts/ProductsContext';
 import Image from 'next/image';
@@ -21,23 +19,13 @@ export default function RelateProducts() {
         router.push(`/product/${id}`);
     }
 
-    // const fetchProducts = async () => {
-    //   try {
-    //     setIsLoading(true);
-    //     const { data } = await axios.get("/api/products");
-    //     const relatedProducts = getRandomProducts(data, 10);
-    //     // setProducts(relatedProducts);
-    //     setIsLoading(false);
-    //   } catch (error) {
-    //     console.error('Error fetching related products:', error);
-    //   }
-    // };
+    
 
     useEffect(() => {
         const relatedProducts = getRandomProducts(9);
         setRelatedProducts(relatedProducts)
 
-      }, [products]);
+      }, [products, getRandomProducts]);
 
     useEffect(() => {
         const container = containerRef.current;
@@ -67,7 +55,7 @@ export default function RelateProducts() {
                 <div key={product._id}  className=" min-w-[270px] w-[270px]  hover:shadow-md hover:shadow-neutral-700 hover:rounded-lg hover:cursor-pointer rouned-lg" onClick={() => handleCardClick(product._id)}>
                 <div className="  bg-neutral-900 rounded-lg shadow h-full ">
                     <div className="bg-neutral-200 rounded-t-lg">
-                    <Image className="rounded-t-lg w-full" src={product.imageUrl}
+                    <Image alt="productImg" className="rounded-t-lg w-full" src={product.imageUrl}
                         width={200}
                         height={150} /> 
                     </div>

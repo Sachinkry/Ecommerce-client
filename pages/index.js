@@ -13,7 +13,7 @@ export default function Home() {
   useEffect(() => {
       const randomProducts = getRandomProducts(8)
       setRandProducts(randomProducts);
-  }, [products])
+  }, [products, getRandomProducts])
 
   return (
     <Layout>

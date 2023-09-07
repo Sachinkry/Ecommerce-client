@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import Loading from '../Loading';
 import { useCart } from '@/contexts/CartContext';
 import Image from 'next/image';
 
@@ -20,7 +18,7 @@ export default function ProductInfoCard({ product }) {
                 <div className="flex flex-col md:flex-row  bg-neutral-900 rounded-lg shadow p-5  gap-5 md:gap-8 lg:gap-12">
                     
                     <div className=" rounded-lg md:w-2/3 ">
-                        <Image className="rounded-lg w-full" src={product.imageUrl}
+                        <Image alt="infoCardImg" className="rounded-lg w-full" src={product.imageUrl}
                         width={200}
                         height={150} /> 
                     </div>

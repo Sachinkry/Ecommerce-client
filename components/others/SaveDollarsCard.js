@@ -10,7 +10,7 @@ export default function SaveDollarCard() {
             </div>
             <div className="self-stretch text-stone-800 text-xs font-normal ">On Our Furnitures and Furnishing Range</div>
           </div>
-          <Image className="self-stretch grow shrink basis-0 rounded-bl-lg rounded-br-lg" src="/SaveDollarImg.png" width={200} height={164} quality={100}/>
+          <Image alt="SaveImg" className="self-stretch grow shrink basis-0 rounded-bl-lg rounded-br-lg" src="/SaveDollarImg.png" width={200} height={164} quality={100}/>
         </div>
     )
 }

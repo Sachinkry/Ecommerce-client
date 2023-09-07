@@ -4,6 +4,7 @@ import SearchBar from './SearchBar';
 import { useEffect, useState } from 'react';
 import { useCart } from '@/contexts/CartContext';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 export default function Header({ toggleCartVisibility, toggleAccountVisibility, toggleBarVisibility }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -27,15 +28,19 @@ export default function Header({ toggleCartVisibility, toggleAccountVisibility, 
   return (
     <nav className="py-3  md:py-4  flex justify-between items-center text-sm ">
       <div className="">
-        <Link href="/" className='flex flex-row items-center space-x-2'>
-          <img
-            src="/logo-noname.png" 
+        <Link href="/" className="flex flex-row items-center space-x-2">
+          <Image
+            src="/logo-noname.png"
+            width={40}
+            height={20} 
             alt="Logo"
             className=" cursor-pointer h-10"
           />
-          <img
+          <Image
             src="/logo-name.png" 
             alt="Logo"
+            width={60}
+            height={20} 
             className=" cursor-pointer w-30 h-6 sm:w-40 sm:h-8 md:block hidden"
           />
         </Link>

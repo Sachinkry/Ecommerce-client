@@ -1,6 +1,5 @@
 import Link from "next/link"
-
-
+import Image from "next/image"
 
 export default function FooterPart() {
     return (
@@ -12,13 +11,17 @@ export default function FooterPart() {
                 {/* logo + description */}
                 <div className=" md:w-1/4  flex flex-col justify-center items-start space-y-2 px-4   py-4">
                   <Link href="/" className='w-60 flex flex-row items-center space-x-2'>
-                    <img
+                    <Image
                       src="/logo-noname.png" 
+                      width={48}
+                      height={48}
                       alt="Logo"
                       className=" cursor-pointer h-8 md:h-12"
                     />
-                    <img
+                    <Image
                       src="/logo-name.png" 
+                      width={80}
+                      height={20}
                       alt="LogoName"
                       className=" cursor-pointer w-20 h-4 md:w-40 md:h-8 md:block "
                     />

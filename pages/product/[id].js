@@ -1,13 +1,12 @@
 import { useRouter } from 'next/router';
 import Layout from '../../components/Layout';
 import RelatedProductCard from '../../components/product/RelatedProductCard';
-import {  useEffect, useState } from 'react';
+import {  useCallback, useEffect, useState } from 'react';
 import ProductInfoCard from '@/components/product/ProductInfoCard';
 import { useProducts } from '@/contexts/ProductsContext';
 
 
 export default function ProductPage() {
-    const [isLoading, setIsLoading] = useState(true); 
     const [product, setProduct] = useState(null);
     const {products} = useProducts();
 
@@ -15,18 +14,18 @@ export default function ProductPage() {
     const { id } = router.query;
     console.log(id)
     
-    const getProductById = () => {
+    const getProductById = useCallback(() => {
       console.log(products)
       // search product by id in this products array
       const product_ = products.find((product) => product._id === id.trim());
       setProduct(product_)
       console.log(product)
       
-    }
+    },[id, products]);
     
     useEffect(() => {
       getProductById();
-    }, [id])
+    }, [id, getProductById])
   
 
     return (

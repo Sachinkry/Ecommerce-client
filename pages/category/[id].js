@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState, useMemo, useCallback } from 'react';
 import axios from 'axios';
 import Layout from '@/components/Layout';
 import ProductCard2 from '../../components/product/ProductCard';
@@ -27,31 +27,33 @@ export default function SearchPage() {
     [selectedOption]
   );
 
-  const fetchSortedProductsByCategory = async () => {
-    setIsLoading(true);
-    setError(null)
+  const fetchSortedProductsByCategory = useCallback(
+    async () => {
+      setIsLoading(true);
+      setError(null)
+      
+      try {
+        const res = await axios.get(`/api/productByCategory?category=${categoryId}`);
+        const allProducts = res.data;
     
-    try {
-      const res = await axios.get(`/api/productByCategory?category=${categoryId}`);
-      const allProducts = res.data;
-  
-      // Sort products by price
-      allProducts.sort(sortFunction);
-  
-      setProducts(allProducts);
-      setIsLoading(false);
-    } catch (error) {
-      setError(`Failed to fetch Products: ${error.response ? error.response.data.error : error.message}`)
-      setIsLoading(false);
-    }
-  };
+        // Sort products by price
+        allProducts.sort(sortFunction);
+    
+        setProducts(allProducts);
+        setIsLoading(false);
+      } catch (error) {
+        setError(`Failed to fetch Products: ${error.response ? error.response.data.error : error.message}`)
+        setIsLoading(false);
+      }
+    }, [categoryId, sortFunction]
+  )
   
 
   useEffect(() => {
     if (categoryId) {
       fetchSortedProductsByCategory();
     }
-  }, [categoryId, selectedOption]);
+  }, [categoryId, selectedOption, fetchSortedProductsByCategory]);
 
   return (
     

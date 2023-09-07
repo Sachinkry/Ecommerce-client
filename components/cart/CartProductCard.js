@@ -22,13 +22,13 @@ export default function CartProductCard({product, calculateTotalPrice}) {
 
   useEffect(() => {
     calculateTotalPrice();
-    }, []);
+    }, [calculateTotalPrice]);
 
     return (
         <div className="flex flex-col gap-3 ">
             <div className="flex flex-row  justify-between w-full px-1">
                 <div className="flex items-center relative">
-                    <Image width={16} height={16} src={product.imageUrl || 'https://fakeimg.pl/'} className="aspect-square object-contain w-12 ring-1 ring-neutral-600  rounded-md " />
+                    <Image alt='cartImg' width={16} height={16} src={product.imageUrl || 'https://fakeimg.pl/'} className="aspect-square object-contain w-12 ring-1 ring-neutral-600  rounded-md " />
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-3 h-3 absolute top-0 right-[-4px] bg-neutral-800 rounded-xl hover:cursor-pointer" onClick={() => removeProductFromCart()} >
                       <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
                     </svg>

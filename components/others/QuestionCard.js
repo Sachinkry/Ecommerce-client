@@ -7,7 +7,7 @@ export default function QuestionCard() {
             <div className="self-stretch text-neutral-900 text-2xl font-semibold">Online Payment Queries</div>
             <div className="self-stretch text-neutral-950 text-sm font-medium">See questions that matter </div>
           </div>
-          <Image className="self-stretch h-44 rounded-bl-lg rounded-br-lg" src="/questionImg.png" width={300} height={170} />
+          <Image alt='questioncardImg' className="self-stretch h-44 rounded-bl-lg rounded-br-lg" src="/questionImg.png" width={300} height={170} />
         </div>
     )
 }
