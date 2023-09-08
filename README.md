@@ -1,1 +1,2 @@
-Personal access token github: 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, what
+Ecommerce-website (client):
+tech stack: Nextjs + Tailwind: full-stack
