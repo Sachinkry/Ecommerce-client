@@ -34,7 +34,7 @@ export default function Layout({ children }) {
   
 
   return (
-    <div className="px-4 sm:px-6 md:px-8 lg:px-10 xl:px-16 overflow-hidden">
+    <div className="px-4 sm:px-6 md:px-8 lg:px-10 xl:px-16 overflow-hidden ">
       <Header 
          isCartVisible={isCartVisible}  
          toggleAccountVisibility={toggleAccountVisibility}

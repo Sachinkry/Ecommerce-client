@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useUserInfo } from "@/contexts/UserContext";
+import { useRouter } from 'next/router';
 
 export default function CheckOutMain({ setTab }) {
   const { user, updateUserData } = useUserInfo();
   const [isDataStored, setIsDataStored] = useState(false);
+  const router = useRouter();
 
   const [formData, setFormData] = useState({
     email: user.email || '',
@@ -87,7 +89,7 @@ export default function CheckOutMain({ setTab }) {
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-3 h-3 ">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
               </svg>
-              <span>Back</span>
+              <span>Home</span>
           </div>
           <button type='submit' disabled={!isFormValid()} className={`px-5 p-4 ring-1 ring-rose-600 bg-rose-900 hover:ring-2 hover:text-rose-600 hover:bg-neutral-900 text-white rounded-lg text-xs ${isFormValid() ? '' : 'opacity-50 cursor-not-allowed'}`}>Continue to Shipping</button>
         </div>

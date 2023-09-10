@@ -13,7 +13,7 @@ const ubuntu = Ubuntu({
 
 export default function App({ Component, pageProps }) {
   return (
-    <ThemeProvider attribute="class">
+    <ThemeProvider attribute="class" defaultTheme='dark' >
       <UserProvider>
         <CartProvider>
           <ProductProvider>
